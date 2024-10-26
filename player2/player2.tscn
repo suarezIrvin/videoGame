@@ -1,0 +1,120 @@
+[gd_scene load_steps=20 format=3 uid="uid://c6p1ymnyqem7p"]
+
+[ext_resource type="Texture2D" uid="uid://bavlg4l8g5k4g" path="res://player2/personaje/caer/idle.png" id="2_ycsqp"]
+[ext_resource type="Texture2D" uid="uid://cba88iobkdcqp" path="res://player2/personaje/parado/parado1.png" id="3_48h5l"]
+[ext_resource type="Texture2D" uid="uid://vd8n20vg12qj" path="res://player2/personaje/muerte/muerte1.png" id="3_xxiuf"]
+[ext_resource type="Texture2D" uid="uid://ce0r4mlobag65" path="res://player2/personaje/parado/parado2.png" id="4_vqa6t"]
+[ext_resource type="Texture2D" uid="uid://4ikb7m7h0nca" path="res://player2/personaje/parado/parado3.png" id="5_sn6sv"]
+[ext_resource type="Texture2D" uid="uid://ri1tjbjg3tl8" path="res://player2/personaje/parado/parado4.png" id="6_03vr6"]
+[ext_resource type="Texture2D" uid="uid://ijwlcgypacb5" path="res://player2/personaje/parado/parado5.png" id="7_we1wf"]
+[ext_resource type="Texture2D" uid="uid://2upyxj3wk0f2" path="res://player2/personaje/saltar/Jump 01.png" id="8_73vk8"]
+[ext_resource type="Texture2D" uid="uid://bfrvgqub41k3j" path="res://player2/personaje/saltar/Jump 02.png" id="9_c7v26"]
+[ext_resource type="Texture2D" uid="uid://bh78b4f0knj83" path="res://player2/personaje/saltar/Jump 03.png" id="10_rqv1d"]
+[ext_resource type="Texture2D" uid="uid://dksowhc2rvvvl" path="res://player2/personaje/correr/Run 01.png" id="11_yyst7"]
+[ext_resource type="Texture2D" uid="uid://c4rkvk3ge3jjh" path="res://player2/personaje/correr/Run 02.png" id="12_qtoby"]
+[ext_resource type="Texture2D" uid="uid://dh0b0wpax7tlt" path="res://player2/personaje/correr/Run 03.png" id="13_xlhu8"]
+[ext_resource type="Texture2D" uid="uid://d0ybluihjmmnu" path="res://player2/personaje/correr/Run 04.png" id="14_ytt5e"]
+[ext_resource type="Texture2D" uid="uid://du8r483ysbc0t" path="res://player2/personaje/correr/Run 05.png" id="15_8qk2v"]
+[ext_resource type="Texture2D" uid="uid://3f5k370i2s5n" path="res://player2/personaje/correr/Run 06.png" id="16_ji8ku"]
+
+[sub_resource type="GDScript" id="GDScript_6024b"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hws1v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_48h5l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xxiuf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xxiuf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xxiuf")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ycsqp")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_48h5l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vqa6t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_sn6sv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_03vr6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_we1wf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_73vk8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_c7v26")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_rqv1d")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_yyst7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_qtoby")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_xlhu8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_ytt5e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_8qk2v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_ji8ku")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i0g1i"]
+size = Vector2(22, 20)
+
+[node name="player2" type="CharacterBody2D"]
+script = SubResource("GDScript_6024b")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hws1v")
+animation = &"jump"
+frame_progress = 0.409611
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_i0g1i")

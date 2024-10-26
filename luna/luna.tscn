@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ba7bemg4xk8ek"]
+
+[ext_resource type="Script" path="res://luna/luna.gd" id="1_2lxyr"]
+[ext_resource type="Texture2D" uid="uid://cu1knx5q80qke" path="res://luna/luna.png" id="2_gkdae"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_swc8q"]
+size = Vector2(40, 26)
+
+[node name="luna" type="Area2D"]
+script = ExtResource("1_2lxyr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.90735e-06, 9.53674e-07)
+scale = Vector2(0.116983, 0.0919959)
+texture = ExtResource("2_gkdae")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, 3)
+shape = SubResource("RectangleShape2D_swc8q")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

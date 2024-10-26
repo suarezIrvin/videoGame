@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://domu6i0jgbf8x"]
+
+[ext_resource type="Script" path="res://bloque espinas/bloque_espinas.gd" id="1_jrjqi"]
+[ext_resource type="Texture2D" uid="uid://du3c1l8gpkc4" path="res://assets/sol.png" id="2_f1m5y"]
+[ext_resource type="Script" path="res://bloque espinas/espinas.gd" id="3_yepj0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qoynx"]
+radius = 16.0
+
+[node name="bloqueEspinas" type="Area2D"]
+position = Vector2(148, 298)
+script = ExtResource("1_jrjqi")
+
+[node name="espinas" type="Sprite2D" parent="."]
+position = Vector2(4, 5.99998)
+scale = Vector2(0.0764792, 0.0767729)
+texture = ExtResource("2_f1m5y")
+script = ExtResource("3_yepj0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, 6)
+shape = SubResource("CircleShape2D_qoynx")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

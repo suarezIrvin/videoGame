@@ -1,0 +1,92 @@
+[gd_scene load_steps=8 format=3 uid="uid://dutqvbqel0iig"]
+
+[ext_resource type="Script" path="res://door.gd" id="1_ual86"]
+[ext_resource type="Texture2D" uid="uid://c3h0y7qnr00uy" path="res://assets/kindpng_4465833.png" id="2_ki0rx"]
+[ext_resource type="AudioStream" uid="uid://010f6pyof2wf" path="res://music/open-door.mp3" id="3_p6ouc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yb3bc"]
+size = Vector2(27.0625, 30.4375)
+
+[sub_resource type="Animation" id="Animation_lb3sv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_ekooo"]
+resource_name = "open"
+length = 1.4
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1iy5f"]
+_data = {
+"RESET": SubResource("Animation_lb3sv"),
+"open": SubResource("Animation_ekooo")
+}
+
+[node name="door" type="Area2D"]
+position = Vector2(19, 3)
+script = ExtResource("1_ual86")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-7.5, -0.374996)
+scale = Vector2(0.214286, 0.164925)
+texture = ExtResource("2_ki0rx")
+hframes = 6
+frame = 1
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = -27.0
+offset_right = 83.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.661989, 1.00642)
+theme_type_variation = &"TooltipLabel"
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6, 5)
+shape = SubResource("RectangleShape2D_yb3bc")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1iy5f")
+}
+
+[node name="openDoor" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_p6ouc")
+volume_db = 10.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://dg8f1ha33gwub"]
+
+[ext_resource type="Script" path="res://finalBoss/barril.gd" id="1_3lun4"]
+[ext_resource type="Texture2D" uid="uid://d01wvboreg1ee" path="res://finalBoss/barrel/barrel_move_1.png" id="1_pjus5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5melt"]
+radius = 10.0499
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4iv8i"]
+radius = 11.1803
+
+[node name="barril" type="RigidBody2D"]
+script = ExtResource("1_3lun4")
+
+[node name="BarrelMove1" type="Sprite2D" parent="."]
+position = Vector2(1, 1)
+scale = Vector2(1.5, 1.8)
+texture = ExtResource("1_pjus5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_5melt")
+
+[node name="ataque" type="Area2D" parent="."]
+position = Vector2(-1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ataque"]
+position = Vector2(2, -1)
+shape = SubResource("CircleShape2D_4iv8i")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="ataque" to="." method="_on_ataque_body_entered"]

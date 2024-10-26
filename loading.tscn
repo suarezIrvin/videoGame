@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=3 uid="uid://cvi1po7ykrjya"]
+
+[ext_resource type="Script" path="res://loading.gd" id="1_8gcp3"]
+[ext_resource type="FontFile" uid="uid://c2tdrb1514oeo" path="res://PixelifySans-VariableFont_wght.ttf" id="2_hssjp"]
+[ext_resource type="Texture2D" uid="uid://6ufsmpe43yab" path="res://logo.jpg" id="3_igd35"]
+
+[sub_resource type="Animation" id="Animation_alg7x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["CARGANDO."]
+}
+
+[sub_resource type="Animation" id="Animation_xo6ac"]
+resource_name = "loading"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.333333, 0.533333, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["CARGANDO", "CARGANDO.", "CARGANDO..", "CARGANDO..."]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ifbup"]
+_data = {
+"RESET": SubResource("Animation_alg7x"),
+"loading": SubResource("Animation_xo6ac")
+}
+
+[node name="loading" type="Node2D"]
+script = ExtResource("1_8gcp3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 597.0
+offset_bottom = 395.0
+color = Color(0.0588235, 0.0352941, 0.0901961, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(152, 99)
+zoom = Vector2(2, 2)
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+texture_repeat = 1
+offset_left = 102.0
+offset_top = 134.0
+offset_right = 193.0
+offset_bottom = 157.0
+theme_override_fonts/font = ExtResource("2_hssjp")
+text = "CARGANDO."
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="Logo" type="Sprite2D" parent="."]
+position = Vector2(142, 70)
+scale = Vector2(0.144043, 0.120117)
+texture = ExtResource("3_igd35")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Label")
+libraries = {
+"": SubResource("AnimationLibrary_ifbup")
+}
